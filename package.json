@@ -1,0 +1,35 @@
+{
+  "name": "latinkit",
+  "version": "0.1.0",
+  "description": "A small, deterministic, testable Latin morphology toolkit — decline nouns and explain *why*, for learners and developers.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "tsx test/firstDeclension.test.ts && tsx test/secondDeclension.test.ts && tsx test/thirdDeclension.test.ts && tsx test/explain.test.ts",
+    "build": "tsc",
+    "build:web": "esbuild web/playground.entry.ts --bundle --format=esm --outfile=web/playground.bundle.js",
+    "demo": "tsx demo.ts"
+  },
+  "keywords": [
+    "latin",
+    "morphology",
+    "declension",
+    "language-learning",
+    "classics",
+    "education",
+    "inflection"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.4.0"
+  }
+}

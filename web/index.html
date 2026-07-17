@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>latinkit — Latin noun decliner</title>
+<style>
+  :root {
+    --bg: #faf8f4;
+    --card: #ffffff;
+    --ink: #23201b;
+    --muted: #6b6459;
+    --line: #e6e0d6;
+    --accent: #8a5a2b;
+    --accent-soft: #f2e7d8;
+    --hi: #fff6e5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  header {
+    padding: 28px 20px 12px;
+    text-align: center;
+  }
+  h1 { margin: 0 0 4px; font-size: 1.9rem; letter-spacing: -0.01em; }
+  header p { margin: 0; color: var(--muted); font-size: 0.98rem; }
+  main { max-width: 720px; margin: 0 auto; padding: 8px 16px 60px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    margin: 16px 0;
+  }
+  .words { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.12s;
+  }
+  .chip:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .chip b { font-style: italic; }
+  .chip span { color: var(--muted); font-size: 0.8rem; margin-left: 4px; }
+  .manual { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 6px; }
+  .manual input, .manual select {
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-family: inherit;
+  }
+  .manual input { width: 130px; }
+  .manual button {
+    padding: 8px 16px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.92rem;
+  }
+  .manual button:hover { filter: brightness(1.08); }
+  .hint { color: var(--muted); font-size: 0.82rem; margin: 6px 0 0; }
+  table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  caption { text-align: left; font-weight: 600; padding: 4px 0 10px; }
+  caption em { font-style: italic; color: var(--accent); }
+  caption .g { color: var(--muted); font-weight: 400; font-size: 0.85rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  td.case { color: var(--muted); font-size: 0.88rem; }
+  td.form { font-size: 1.05rem; }
+  tr.hi td.form { background: var(--hi); font-weight: 600; }
+  .why {
+    margin-top: 14px;
+    background: var(--hi);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    font-size: 0.92rem;
+  }
+  .why b { color: var(--accent); }
+  .err { color: #a3341f; font-size: 0.92rem; }
+  footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 20px; }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>latinkit</h1>
+  <p>Type any Latin noun and see its full declension — and <em>why</em> each ending is what it is.</p>
+</header>
+<main>
+  <div class="card">
+    <div class="words" id="words"></div>
+    <div class="manual">
+      <input id="nom" placeholder="nominative" />
+      <input id="gen" placeholder="genitive" />
+      <select id="gender">
+        <option value="feminine">feminine</option>
+        <option value="masculine">masculine</option>
+        <option value="neuter">neuter</option>
+      </select>
+      <button id="go">Decline</button>
+    </div>
+    <p class="hint">Tip: the genitive is what tells Latin which declension a noun is (–ae = 1st, –ī = 2nd, –is = 3rd). Try a starter word above, or type your own.</p>
+  </div>
+  <div id="out"></div>
+</main>
+<footer>
+  latinkit · open-source Latin morphology · deterministic &amp; testable ·
+  <a href="https://github.com/">GitHub</a>
+</footer>
+
+<script type="module" src="./playground.bundle.js"></script>
+<script type="module">
+  const kit = window.latinkit;
+  const words = document.getElementById('words');
+  const out = document.getElementById('out');
+
+  // Render starter chips.
+  for (const w of kit.STARTER_WORDS) {
+    const c = document.createElement('button');
+    c.className = 'chip';
+    c.innerHTML = `<b>${w.nominative}</b><span>${w.gloss}</span>`;
+    c.onclick = () => render(w);
+    words.appendChild(c);
+  }
+
+  function render(entry) {
+    const r = kit.run(entry);
+    if (!r.ok) {
+      out.innerHTML = `<div class="card err">⚠ ${r.error}</div>`;
+      return;
+    }
+    const ord = ['1st','2nd','3rd','4th','5th'][r.declension - 1];
+    let rows = '';
+    for (const row of r.rows) {
+      const isHi = r.highlight && r.highlight.label.startsWith(row.singular + ' ');
+      rows += `<tr class="${isHi ? 'hi' : ''}">
+        <td class="case">${row.case}</td>
+        <td class="form">${row.singular}</td>
+        <td class="form">${row.plural}</td></tr>`;
+    }
+    out.innerHTML = `<div class="card">
+      <table>
+        <caption><em>${r.lemma}</em> <span class="g">— ${ord} declension, ${r.gender}</span></caption>
+        <thead><tr><th>Case</th><th>Singular</th><th>Plural</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      ${r.highlight ? `<div class="why"><b>Why ${r.highlight.label}?</b><br>${r.highlight.text}</div>` : ''}
+    </div>`;
+  }
+
+  document.getElementById('go').onclick = () => {
+    const nom = document.getElementById('nom').value.trim();
+    const gen = document.getElementById('gen').value.trim();
+    const gender = document.getElementById('gender').value;
+    if (!nom || !gen) {
+      out.innerHTML = `<div class="card err">Please enter both the nominative and genitive.</div>`;
+      return;
+    }
+    render({ nominative: nom, genitive: gen, gender });
+  };
+
+  // Show one example on load.
+  render(kit.STARTER_WORDS[0]);
+</script>
+</body>
+</html>
