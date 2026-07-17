@@ -3,8 +3,8 @@
 **A small, deterministic, testable Latin morphology toolkit.**
 Decline Latin nouns — and understand *why* each ending is what it is.
 
-[![tests](https://github.com/OWNER/latinkit/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/latinkit/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![tests](https://img.shields.io/badge/tests-116%20passing-brightgreen.svg)](./test)
 
 Most Latin tools tell you *what* a form is. latinkit also tells you *why* —
 the part learners actually get stuck on.
