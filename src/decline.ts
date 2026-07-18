@@ -7,6 +7,8 @@ import type { NounEntry, Paradigm } from './types.js';
 import { paradigmFirst } from './firstDeclension.js';
 import { paradigmSecond } from './secondDeclension.js';
 import { paradigmThird } from './thirdDeclension.js';
+import { paradigmFourth } from './fourthDeclension.js';
+import { paradigmFifth } from './fifthDeclension.js';
 
 export type Declension = 1 | 2 | 3 | 4 | 5;
 
@@ -42,10 +44,12 @@ export function decline(entry: NounEntry): Paradigm {
     case 1: return paradigmFirst(entry);
     case 2: return paradigmSecond(entry);
     case 3: return paradigmThird(entry);
+    case 4: return paradigmFourth(entry);
+    case 5: return paradigmFifth(entry);
     default:
       throw new Error(
         `Detected ${d}th declension for "${entry.nominative}", but that engine ` +
-          `is not implemented yet (only 1st–3rd are ready).`
+          `is not implemented yet.`
       );
   }
 }

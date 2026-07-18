@@ -17,6 +17,16 @@ export {
   isIStem,
 } from './thirdDeclension.js';
 export {
+  inflectFourth,
+  paradigmFourth,
+  fourthDeclensionStem,
+} from './fourthDeclension.js';
+export {
+  inflectFifth,
+  paradigmFifth,
+  fifthDeclensionStem,
+} from './fifthDeclension.js';
+export {
   decline,
   detectDeclension,
 } from './decline.js';

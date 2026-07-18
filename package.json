@@ -12,7 +12,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "tsx test/firstDeclension.test.ts && tsx test/secondDeclension.test.ts && tsx test/thirdDeclension.test.ts && tsx test/explain.test.ts",
+    "test": "tsx test/firstDeclension.test.ts && tsx test/secondDeclension.test.ts && tsx test/thirdDeclension.test.ts && tsx test/fourthDeclension.test.ts && tsx test/fifthDeclension.test.ts && tsx test/explain.test.ts",
     "build": "tsc",
     "build:web": "esbuild web/playground.entry.ts --bundle --format=esm --outfile=web/playground.bundle.js",
     "demo": "tsx demo.ts"
