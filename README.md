@@ -10,7 +10,7 @@ Decline any Latin noun in all five declensions — and understand *why* every en
 Most Latin tools tell you **what** a form is. latinkit also tells you **why** —
 the part learners actually get stuck on.
 
-> **Try it live:** [latinkit playground →](PLAYGROUND_URL)  
+> **Try it live:** [latinkit playground →](https://web-seven-swart-53.vercel.app)  
 > Type any noun, get its full declension table plus a plain-English explanation of every ending.
 
 ---
