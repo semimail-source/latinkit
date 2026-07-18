@@ -3,6 +3,8 @@
 **Modern open-source Latin morphology infrastructure.**  
 Decline any Latin noun in all five declensions — and understand *why* every ending is what it is.
 
+![latinkit demo](assets/demo.gif)
+
 [![CI](https://github.com/semimail-source/latinkit/actions/workflows/ci.yml/badge.svg)](https://github.com/semimail-source/latinkit/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![tests](https://img.shields.io/badge/tests-177%20passing-brightgreen.svg)](./test)
