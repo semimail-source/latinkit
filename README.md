@@ -3,7 +3,9 @@
 **Modern open-source Latin morphology infrastructure.**  
 Decline any Latin noun in all five declensions — and understand *why* every ending is what it is.
 
-![latinkit demo](assets/demo.gif)
+[![latinkit demo](assets/demo.png)](https://web-seven-swart-53.vercel.app)
+
+> **[▶ Try the live playground](https://web-seven-swart-53.vercel.app)** — click a word, see its full declension and *why* each ending is what it is.
 
 [![CI](https://github.com/semimail-source/latinkit/actions/workflows/ci.yml/badge.svg)](https://github.com/semimail-source/latinkit/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
