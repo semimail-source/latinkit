@@ -1,28 +1,46 @@
 # latinkit
 
-**Modern open-source Latin morphology infrastructure.**  
-Decline any Latin noun in all five declensions — and understand *why* every ending is what it is.
+**Learn Latin noun endings by understanding *why* — not by memorizing tables.**  
+Every Latin learner hits the same wall: five declensions, dozens of endings, and textbooks that just say "memorize it." latinkit declines any noun **and explains the reason behind every ending** — so the grammar finally makes sense instead of being rote.
 
 [![latinkit demo](assets/demo.png)](https://web-seven-swart-53.vercel.app)
 
-> **[▶ Try the live playground](https://web-seven-swart-53.vercel.app)** — click a word, see its full declension and *why* each ending is what it is.
+> **[▶ Try the live playground — no install, click a word and learn](https://web-seven-swart-53.vercel.app)**  
+> Click *puella*, *rēx*, *mare*… see the full table, then read *why* each ending is what it is.
 
 [![CI](https://github.com/semimail-source/latinkit/actions/workflows/ci.yml/badge.svg)](https://github.com/semimail-source/latinkit/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![tests](https://img.shields.io/badge/tests-177%20passing-brightgreen.svg)](./test)
 
-Most Latin tools tell you **what** a form is. latinkit also tells you **why** —
-the part learners actually get stuck on.
+---
 
-> **Try it live:** [latinkit playground →](https://web-seven-swart-53.vercel.app)  
-> Type any noun, get its full declension table plus a plain-English explanation of every ending.
+## For learners & teachers
+
+Most Latin tools tell you **what** a form is. latinkit tells you **why** — the
+part students actually get stuck on. You don't need to code or install anything:
+
+**🎓 If you're learning Latin:** open the [playground](https://web-seven-swart-53.vercel.app),
+type (or click) any noun, and you get its complete declension table *plus a plain-English
+reason for every ending*. Instead of "the ablative of *rēx* is *rēge*, memorize it," you
+learn *"ablative singular is **-e** for consonant stems, but **-ī** for neuter i-stems like
+marī"* — the rule that unlocks a whole class of words at once.
+
+**🍎 If you're teaching Latin:** it's an instant, free board demo. Pull up any noun a
+student asks about, show the full paradigm, and let the tool spell out the pattern —
+including the classic traps (*agricola* being masculine, *filī* not *filie*, *puerī* but
+*agrī*). No login, no cost, works on any device, and every form is checked against a
+test suite so you can trust what's on screen.
+
+**Why it helps you actually learn:** Latin endings aren't random — they follow a small
+set of rules per declension. latinkit surfaces *that rule* every time, so you stop
+memorizing 60 separate boxes and start recognizing the handful of patterns behind them.
 
 ---
 
-## Why latinkit?
+## How it compares
 
-Existing morphology tools (Whitaker's Words, Collatinus, Morpheus) are powerful
-but built for lookup, not learning. latinkit is different:
+Existing morphology tools (Whitaker's Words, Collatinus, Morpheus) are powerful, but
+they're built for **lookup**, not **learning** — and none of them explain *why*:
 
 | | Whitaker's Words | Collatinus | **latinkit** |
 |---|---|---|---|
